@@ -3,9 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://c0p5ekxs3p5uo" path="res://loop.png" id="1_1jjrq"]
 [ext_resource type="Script" path="res://loop.gd" id="2_uxoqu"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4fg55"]
-radius = 63.0
-height = 134.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eev4l"]
+size = Vector2(109.73, 47.9871)
 
 [sub_resource type="Curve2D" id="Curve2D_kg1aa"]
 _data = {
@@ -20,8 +19,10 @@ script = ExtResource("2_uxoqu")
 texture = ExtResource("1_1jjrq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4, 1)
-shape = SubResource("CapsuleShape2D_4fg55")
+position = Vector2(-25.9256, -3.21142)
+rotation = -1.54763
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_eev4l")
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_kg1aa")

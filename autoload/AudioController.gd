@@ -28,7 +28,7 @@ func play_sfx(stream: AudioStream) -> void:
 	stream.loop = true
 	
 	sfx_player.stream = stream
-	sfx_player.volume_db = -10.0
+	sfx_player.volume_db = -30.0
 	sfx_player.play()
 	
 func playTopSfx() -> void:

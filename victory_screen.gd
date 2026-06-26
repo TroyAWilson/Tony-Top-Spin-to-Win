@@ -10,6 +10,7 @@ func _ready() -> void:
 	end_music.loop = true
 	AudioController.play_music(end_music)
 
-
 func _on_button_pressed() -> void:
-	pass # Replace with function body.
+	#reload the game
+	GameState.player_score = 0 #reset score
+	SceneManager.change_scene(SceneManager.MAIN)

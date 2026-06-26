@@ -21,6 +21,10 @@ GameState="*res://autoload/GameState.gd"
 AudioController="*res://autoload/AudioController.gd"
 SceneManager="*res://autoload/SceneManager.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 trick={

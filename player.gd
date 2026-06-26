@@ -7,6 +7,7 @@ const JUMP_VELOCITY = -300.0
 const GRIND_SPEED = 300.0
 const RAIL_OFFSET = Vector2(0, -13) #Sets player above the rail, just an offset value
 const BASE_SPEED := 250.0
+const scoreStyles = "[font_size=20]"
 
 var can_grind := false
 var grinding := false
@@ -18,11 +19,10 @@ var snapping_to_rail := false
 var snap_tween: Tween = null
 var controls_enabled := false
 var slowing_to_stop := false
+
 @onready var MainLabel := $"../CanvasLayer/Score2"
 @onready var AnimPlayer := $AnimationPlayer
 @onready var AnimSprite := $AnimatedSprite2D
-
-const scoreStyles = "[font_size=20]"
 
 func _onready() -> void:
 	MainLabel.text = str(GameState.player_score)
@@ -32,7 +32,9 @@ func _onready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not controls_enabled:
+		AnimSprite.play("no_spin")
 		return
+		
 	
 	if MainLabel.text == "":
 		MainLabel.text = scoreStyles+str(GameState.player_score)
@@ -74,19 +76,19 @@ func _physics_process(delta: float) -> void:
 		if !AudioController.sfx_player.playing:
 			AudioController.playTopSfx()
 
+
 	if not is_on_floor() and not doing_trick and Input.is_action_just_pressed("trick"):
-		print('trick')
 		do_trick()
 
 	if is_on_floor():
-		AnimPlayer.play("default")
+		AnimSprite.play("default")
 
 	# Jump
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# Horizontal movement
-	var direction := Input.get_axis("ui_left", "ui_right")
+	#var direction := Input.get_axis("ui_left", "ui_right")
 
 	var speed = BASE_SPEED
 	speed  = max(speed, BASE_SPEED)
@@ -108,6 +110,9 @@ func exit_grind_zone(rail: Area2D) -> void:
 		current_rail = null
 
 func start_grind() -> void:
+	if doing_trick:
+		doing_trick = false
+	
 	if current_rail == null:
 		return
 
@@ -155,17 +160,20 @@ func end_grind() -> void:
 func do_trick() -> void:
 	if doing_trick:
 		return
-	doing_trick = true
+	#currently removing the animation check?
+	#I don't think I have the time to fix this, so people can just spam trick
+	#doing_trick = true
 	AnimSprite.play("trick")
 	
 	#update score
-	GameState.player_score += 10
+	GameState.player_score += 50
 	MainLabel.text = scoreStyles + str(GameState.player_score)
 	await $AnimatedSprite2D.animation_finished
 
+	print("after await")
+
 	doing_trick = false
 	AnimSprite.play("default")
-	print(doing_trick)
 
 func launch() -> void:
 	#This needs to be workshopped a little bit more but we're almost there

@@ -3,6 +3,7 @@ extends Node
 #@onready var anim: AnimationPlayer = $AnimationPlayer
 
 const VICTORY := "res://victory_screen.tscn"
+const MAIN := "res://main.tscn"
 
 var current_level := ""
 var transitioning := false
