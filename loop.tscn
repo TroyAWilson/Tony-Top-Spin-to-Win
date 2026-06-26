@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ypsxh8w8n7du"]
+
+[ext_resource type="Texture2D" uid="uid://c0p5ekxs3p5uo" path="res://loop.png" id="1_1jjrq"]
+[ext_resource type="Script" path="res://loop.gd" id="2_uxoqu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4fg55"]
+radius = 63.0
+height = 134.0
+
+[sub_resource type="Curve2D" id="Curve2D_kg1aa"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -44, 44, 0, 0, 0, 0, -10, 37, 0, 0, 0, 0, 4, 28, 0, 0, 0, 0, 15, 1, 0, 0, 0, 0, 22, -23, 0, 0, 0, 0, 15, -40, 0, 0, 0, 0, -10, -44, 0, 0, 0, 0, -26, -36, 0, 0, 0, 0, -33, -17, 0, 0, 0, 0, -36, 0, 0, 0, 0, 0, -31, 13, 0, 0, 0, 0, -16, 26, 0, 0, 0, 0, 0, 35, 0, 0, 0, 0, 12, 37, 0, 0, 0, 0, 35, 41, 0, 0, 0, 0, 45, 42)
+}
+point_count = 16
+
+[node name="Loop" type="Area2D"]
+script = ExtResource("2_uxoqu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1jjrq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 1)
+shape = SubResource("CapsuleShape2D_4fg55")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_kg1aa")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-44, 44)
+rotation = -0.203045

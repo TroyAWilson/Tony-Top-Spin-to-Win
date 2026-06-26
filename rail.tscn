@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://iy7c7r8g4i2i"]
+
+[ext_resource type="Script" path="res://rail.gd" id="1_keylu"]
+[ext_resource type="Texture2D" uid="uid://ct5drgkva3yhn" path="res://rail.png" id="2_jrqqi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y4107"]
+size = Vector2(176, 77.5)
+
+[sub_resource type="Curve2D" id="Curve2D_klvch"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -61, -5, 0, 0, 0, 0, 58, -5)
+}
+point_count = 2
+
+[node name="Rail" type="Area2D"]
+script = ExtResource("1_keylu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_jrqqi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6, -3.75)
+shape = SubResource("RectangleShape2D_y4107")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_klvch")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-61, -5)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

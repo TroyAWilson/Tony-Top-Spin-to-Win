@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxjie8vuu4ad6"]
+
+[ext_resource type="Script" path="res://bench.gd" id="1_3croj"]
+[ext_resource type="Texture2D" uid="uid://cix3yhgx4480" path="res://bench.png" id="2_mrlp3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ku6fr"]
+size = Vector2(67, 39)
+
+[sub_resource type="Curve2D" id="Curve2D_r0ryl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -29, -12, 0, 0, 0, 0, 30, -13)
+}
+point_count = 2
+
+[node name="bench" type="Area2D"]
+script = ExtResource("1_3croj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_mrlp3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -5.5)
+shape = SubResource("RectangleShape2D_ku6fr")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_r0ryl")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-29, -12)
+rotation = -0.0169475

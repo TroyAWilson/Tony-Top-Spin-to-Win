@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cem1oxt8fe056"]
+
+[ext_resource type="Texture2D" uid="uid://7r2sibq0m7j1" path="res://hill.png" id="1_mqgmo"]
+
+[node name="hill" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_mqgmo")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-25, 25, -17, 20, -14, 17, -10, 12, -7, 8, -4, 4, -1, 2, 2, 1, 7, 2, 9, 3, 12, 7, 16, 13, 19, 19, 24, 23, 27, 25)
